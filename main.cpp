@@ -3,7 +3,9 @@
 
 int main () {
 Prime_factorization test;
-for (auto i : test.prime_factorization(150)) 
+int t;
+std::cin >> t;
+for (auto i : test.prime_factorization(t)) 
 {
     std::cout << i << std::endl;
 }
