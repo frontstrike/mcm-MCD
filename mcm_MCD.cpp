@@ -3,8 +3,10 @@
 #include <math.h>
 #include "mcm_MCD.hh"
 
+typedef std::vector<int> VectorInt;
 
-std::vector <int> Prime_factorization::prime_factorization(int num) 
+
+VectorInt Prime_factorization::prime_factorization(int num) 
 {
     int dividend = num;
 
@@ -40,7 +42,7 @@ std::vector <int> Prime_factorization::prime_factorization(int num)
  
 }
 
-std::vector <int> Prime_factorization::get_dividend_prime_factorization() 
+VectorInt Prime_factorization::get_dividend_prime_factorization() 
 {
     if(! dividend_prime_factorization.empty()) {
         return dividend_prime_factorization;
@@ -50,4 +52,22 @@ std::vector <int> Prime_factorization::get_dividend_prime_factorization()
         return dividend_prime_factorization;
     }
     
+}
+
+void Prime_factorization::LCM(int num ,bool show_calculation_LCM) 
+{
+    VectorInt lcm;
+    VectorInt result;
+    for (int i : prime_factorization(num)) {
+        lcm.push_back(i);
+    }
+
+    
+    
+    
+
+
+
+
+
 }

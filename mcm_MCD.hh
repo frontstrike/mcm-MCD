@@ -1,11 +1,17 @@
 #include <vector>
+
+typedef std::vector<int> VectorInt;
+
+
 class Prime_factorization {
 
 private:
-std::vector <int> dividend_prime_factorization;
-std::vector <int> prime_factors;
+VectorInt dividend_prime_factorization;
+VectorInt prime_factors;
+
 
 public:
-std::vector <int> prime_factorization(int num);
-std::vector <int> get_dividend_prime_factorization();
+VectorInt prime_factorization(int num);
+VectorInt get_dividend_prime_factorization();
+void LCM(int num ,bool show_calculation_LCM);
 };
