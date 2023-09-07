@@ -11,6 +11,7 @@ tmp.push_back(t);
 std::cin >> t;
 tmp.push_back(t);
 
+
 /*
 for (auto i : test.prime_factorization(t)) 
 {
@@ -23,5 +24,5 @@ for (auto i : test.get_dividend_prime_factorization())
     std::cout << i << std::endl;
 }
 */
-test.LCM(tmp,false);
+std::cout << test.LCM(tmp,false) << std::endl;
 }

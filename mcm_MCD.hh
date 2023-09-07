@@ -16,6 +16,6 @@ void erase_array_factor();
 public:
 VectorInt prime_factorization(int num);
 VectorInt get_dividend_prime_factorization();
-void LCM(VectorInt num ,bool show_calculation_LCM);
+int LCM(VectorInt num ,bool show_calculation_LCM);
 
 };
