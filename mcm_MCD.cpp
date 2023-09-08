@@ -32,9 +32,9 @@ VectorInt Prime_factorization::prime_factorization(int num)
             prime_factors.push_back(5);
         }
         else {
-            dividend = dividend/dividend;
             dividend_prime_factorization.push_back(dividend);
             prime_factors.push_back(dividend);
+            break;
         }
     }
     
@@ -59,6 +59,64 @@ void Prime_factorization::erase_array_factor()
 {
 dividend_prime_factorization.clear();
 prime_factors.clear();
+}
+
+
+VectorArrayInt Prime_factorization::lcm_MCD_calc(VectorArrayInt lcm_prime_factorization) 
+{
+
+    VectorArrayInt lcm_MCD;
+    int exponent = 1;   
+    for(int x = 0; x < lcm_prime_factorization.size();x++) 
+    {
+        VectorInt Temp;
+        Temp.push_back(lcm_prime_factorization[x][1]); //add a prime number factorized in array
+        for(int y = 1; y < lcm_prime_factorization[x].size();y++) 
+        {
+            if(lcm_prime_factorization[x][y] == lcm_prime_factorization[x][y+1] && y+1 < lcm_prime_factorization[x].size()) 
+            {
+                if(lcm_prime_factorization[x][y] != 1) 
+                {
+                    exponent++;
+                }
+                
+            }
+            else 
+            {
+                if(y+1 < lcm_prime_factorization[x].size()) 
+                {
+                    if(lcm_prime_factorization[x][y+1] != 1) 
+                    {
+                        Temp.push_back(exponent);
+                        lcm_MCD.push_back(Temp); 
+                        Temp.clear();
+                        Temp.push_back(lcm_prime_factorization[x][y+1]);
+                        exponent=1;
+                    }
+                }
+                
+                
+                else 
+                {
+                    Temp.push_back(exponent);
+                    lcm_MCD.push_back(Temp); 
+                    Temp.clear();
+                    //Temp.push_back(lcm_prime_factorization[x][y]);
+                    exponent=1;
+                }
+            }
+            
+        }
+        if(lcm_MCD.empty() != false) 
+        {
+        lcm_MCD.push_back(Temp); 
+        }
+        
+
+
+    }
+    return lcm_MCD;
+
 }
 
 int Prime_factorization::LCM(VectorInt num ,bool show_calculation_LCM) 
@@ -90,90 +148,32 @@ int Prime_factorization::LCM(VectorInt num ,bool show_calculation_LCM)
         lcm_prime_factorization.push_back(tempV);
     }
 
-    for(int i = 0; i < lcm_prime_factorization.size();i++) 
+    if(show_calculation_LCM) 
     {
-        for(int x = 0;x < lcm_prime_factorization[i].size();x++) 
+        for(int i = 0; i < lcm_prime_factorization.size();i++) 
         {
-            std::cout << lcm_prime_factorization[i][x] << " ";
-            
+            std::cout << lcm_prime_factorization[i][0] << ": ";
+                for(int x = 1;x < lcm_prime_factorization[i].size();x++) 
+                {
+                    std::cout << lcm_prime_factorization[i][x] << " ";
+                    
+                }
+            std::cout << std::endl;
         }
-        std::cout << std::endl;
     }
 
-    VectorArrayInt lcm_calc;
-    int exponent = 1;   
-    for(int x = 0; x < lcm_prime_factorization.size();x++) 
-    {
-        VectorInt Temp;
-        Temp.push_back(lcm_prime_factorization[x][1]); //add a prime number factorized in array
-        for(int y = 1; y < lcm_prime_factorization[x].size();y++) 
-        {
-            if(lcm_prime_factorization[x][y] == lcm_prime_factorization[x][y+1] && y+1 < lcm_prime_factorization[x].size()) 
-            {
-                if(lcm_prime_factorization[x][y] != 1) 
-                {
-                    exponent++;
-                }
-                
-            }
-            else 
-            {
-                if(y+1 < lcm_prime_factorization[x].size()) 
-                {
-                    if(lcm_prime_factorization[x][y+1] != 1) 
-                    {
-                        Temp.push_back(exponent);
-                        lcm_calc.push_back(Temp); 
-                        Temp.clear();
-                        Temp.push_back(lcm_prime_factorization[x][y+1]);
-                        exponent=1;
-                    }
-                }
-                
-                
-                else 
-                {
-                    Temp.push_back(exponent);
-                    lcm_calc.push_back(Temp); 
-                    Temp.clear();
-                    //Temp.push_back(lcm_prime_factorization[x][y]);
-                    exponent=1;
-                }
-            }
-            
-        }
-        if(lcm_calc.empty() != false) 
-        {
-        lcm_calc.push_back(Temp); 
-        }
-        
+    VectorArrayInt lcm_calc = lcm_MCD_calc(lcm_prime_factorization);
 
-
-    }
-
-
-
-    for(int x = 0; x < lcm_calc.size();x++) 
-    {
-        for(int y = 0;y < lcm_calc[x].size();y++) 
-        {
-            std::cout << lcm_calc[x][y] <<" ";
-        }
-        std::cout << std::endl;
-    }
 
     for(int x = 0; x < lcm_calc.size();x++) 
     {
         int x2 = x;
         int y = 0;
-        
-        std::cout << "x: " << x << std::endl;
-
+      
         while (x2 < lcm_calc.size())
         {
             if(x2+1 < lcm_calc.size()) 
             {
-            std::cout << "x2: " << x2 << std::endl;
             
             if(lcm_calc[x][y] == lcm_calc[x2+1][y]) 
             {
@@ -201,15 +201,6 @@ int Prime_factorization::LCM(VectorInt num ,bool show_calculation_LCM)
             x2++;
         }
         
-    }
-
-    for(int x = 0; x < lcm_calc.size();x++) 
-    {
-        for(int y = 0;y < lcm_calc[x].size();y++) 
-        {
-            std::cout << lcm_calc[x][y] <<" ";
-        }
-        std::cout << std::endl;
     }
 
     int result = 1;
