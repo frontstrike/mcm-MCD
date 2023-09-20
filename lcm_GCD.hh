@@ -12,11 +12,11 @@ private:
     //Erase array dividend_prime_factorization and prime_factors
     void erase_array_factor();
 
-    VectorArrayInt lcm_MCD_calc(VectorArrayInt lcm_prime_factorization);
-
+    int lcm_calc(int a, int b);
+    int GCD_calculate(int a,int b);
 public:
     VectorInt prime_factorization(int num);
     VectorInt get_dividend_prime_factorization();
     int LCM(VectorInt num ,bool show_calculation_LCM = false);
-
+    int GCD(VectorInt num , bool show_calculation_LCM = false);
 };

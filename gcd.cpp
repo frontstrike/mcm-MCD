@@ -3,7 +3,7 @@
 
 int main(int argc, char *argv[]) 
 {
-    Prime_factorization lcm;
+    Prime_factorization gcd;
     std::vector <int> number;
 
     if(argc <= 2) 
@@ -16,8 +16,10 @@ int main(int argc, char *argv[])
         int x = atoi(argv[i]);
         number.push_back(x);
     }
-    std::cout << lcm.LCM(number,true) << std::endl;
+    std::cout << gcd.GCD(number,true) << std::endl;
 
     return 0;
     
 }
+
+//https://www.youmath.it/domande-a-risposte/view/6654-algoritmo-euclide.html
