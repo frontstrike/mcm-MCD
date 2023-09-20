@@ -1,3 +1,25 @@
+/* lcm_GCD.cpp is a library for calculate prime factors,lcm and GCD.
+
+   Copyright (C) 1992, 1997-2002, 2004-2023 Free Software Foundation, Inc.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3, or (at your option)
+   any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA
+   02110-1301, USA.  */
+
+/* Written  by Pierfrancesco Gallo <pierfrancesco.gallo.work@gmail.com> */
+
+
 #include <iostream>
 #include <vector>
 #include <math.h>
@@ -8,6 +30,21 @@ typedef std::vector<std::vector<int>> VectorArrayInt;
 
 VectorInt Prime_factorization::prime_factorization(int num) 
 {
+    /*checks whether the variables contain information
+    If they are empty, continue normally without carrying out any operations.
+    If both/one of them are full they are emptied.*/
+
+    if(dividend_prime_factorization.empty() == true && prime_factors.empty() == true)
+    {
+        /*continue*/
+    } 
+    else 
+    {
+        dividend_prime_factorization.clear();
+        prime_factors.clear();
+    }
+
+
     int dividend = num;
 
     if (dividend != 0) {
@@ -54,13 +91,17 @@ VectorInt Prime_factorization::get_dividend_prime_factorization()
     
 }
 
-
-void Prime_factorization::erase_array_factor() 
+VectorInt Prime_factorization::get_prime_factors() 
 {
-dividend_prime_factorization.clear();
-prime_factors.clear();
+    if(! prime_factors.empty()) {
+        return prime_factors;
+    }
+    else {
+        std::cerr << "Warning! Prime factorization was not initialized,please call the function prime_factorization" << std::endl;
+        return prime_factors;
+    }
+    
 }
-
 
 int Prime_factorization::lcm_calc(int a, int b) 
 {
@@ -70,6 +111,19 @@ int Prime_factorization::lcm_calc(int a, int b)
 
 int Prime_factorization::LCM(VectorInt num ,bool show_calculation_LCM) 
 {
+    if(show_calculation_LCM)
+    {
+        for(int x : num) 
+        {
+            std::cout << x << ":";
+            for(int y : prime_factorization(x)) 
+            {
+                std::cout << " " << y;
+            } 
+            std::cout << std::endl;
+        }
+    }
+
     int result = num[0];
     for (int i = 1; i < num.size(); i++)
     {
@@ -90,8 +144,22 @@ int Prime_factorization::GCD_calculate(int a,int b)
     }
 }
 
-int  Prime_factorization::GCD(VectorInt num , bool show_calculation_LCM) 
+int  Prime_factorization::GCD(VectorInt num , bool show_calculation_GCD) 
 {
+
+    if(show_calculation_GCD)
+    {
+        for(int x : num) 
+        {
+            std::cout << x << ":";
+            for(int y : prime_factorization(x)) 
+            {
+                std::cout << " " << y;
+            } 
+            std::cout << std::endl;
+        }
+    }
+
 
     int result = num[0];
 
