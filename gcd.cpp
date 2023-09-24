@@ -23,25 +23,83 @@
 #include <iostream>
 #include "lcm_GCD.hh"
 
+bool check_number(std::string str) 
+{
+   for (int i = 0; i < str.length(); i++)
+   if (isdigit(str[i]) == false)
+   {
+      return false;
+   }
+ return true;
+}
+
+
 int main(int argc, char *argv[]) 
 {
     Prime_factorization gcd;
     std::vector <int> number;
 
+  bool show_calculation = false;
     if(argc <= 2) 
     {
+
         std::cout << "Please enter two numbers" << std::endl;
+
+        std::cout << "program that calculates the lcm" << std::endl;
+               
+        std::cout << std::endl;
+
+        std::cout << "-h show the options" << std::endl;
+        std::cout << "-n show the factorization" << std::endl;
+
+        std::cout << std::endl;
+
+        std::cout << "Version: 1.0" << std::endl;
+        std::cout << "Report bug at https://github.com/frontstrike/mcm-MCD " << std::endl;
+
         return -1;
     }
 
     for (int i = 1; i < argc; i++) {
-        int x = atoi(argv[i]);
-        number.push_back(x);
+
+        if(check_number(argv[i]) == true)
+        {
+            int x = atoi(argv[i]);
+            number.push_back(x);
+        }
+
+        else 
+        {
+            std::string arg = argv[i];
+            if(arg == "-n") 
+            {
+                show_calculation = true;
+            }
+
+            else if(arg == "-h") 
+            {
+               std::cout << "program that calculates the lcm" << std::endl;
+               
+               std::cout << std::endl;
+
+               std::cout << "-h show the options" << std::endl;
+               std::cout << "-n show the factorization" << std::endl;
+
+               std::cout << std::endl;
+
+               std::cout << "Version: 1.0" << std::endl;
+               std::cout << "Report bug at https://github.com/frontstrike/mcm-MCD " << std::endl;
+
+            }  
+
+            else 
+            {
+                std::cout << "option not valide" << std::endl;
+            }
+        }
     }
-    std::cout << gcd.GCD(number,true) << std::endl;
+    std::cout << gcd.GCD(number,show_calculation) << std::endl;
 
     return 0;
     
 }
-
-//https://www.youmath.it/domande-a-risposte/view/6654-algoritmo-euclide.html
