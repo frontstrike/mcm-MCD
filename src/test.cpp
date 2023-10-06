@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
     std::vector <int> pf;
     std::vector <int> vf;
 
+/*
     for(int x : PF.prime_factorization(12)) 
     {
         pf.push_back(x);
@@ -36,6 +37,16 @@ int main(int argc, char *argv[])
     {
         std::cout << x << std::endl;
     }
+    */
+
+    pf = PF.prime_factorization(12);
+
+
+    for(int x : pf) 
+    {
+        std::cout << "pf :" <<  x << std::endl;
+    }
+    
     std::cout << "--------" << std::endl;
 
     for(int x : PF.prime_factorization(14)) 
