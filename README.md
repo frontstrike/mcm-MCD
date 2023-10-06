@@ -10,4 +10,4 @@ I also created two programs that returns the result of the LCM and GCD, you will
 To compile the program that uses this library pass this parameter: -llcmGCD
 
 # Documentation
-To know how to use the library I wrote the documentation, it is found in the DOC folder
+To know how to use the library i wrote the documentation, it is found in the DOC folder
