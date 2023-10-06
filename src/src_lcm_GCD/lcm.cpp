@@ -1,4 +1,4 @@
-/* gcd.cpp program that allows you to calculate the GCD.
+/* lcm.cpp program that allows you to calculate the lcm.
 
    Copyright (C) 1992, 1997-2002, 2004-2023 Free Software Foundation, Inc.
 
@@ -19,9 +19,8 @@
 
 /* Written  by Pierfrancesco Gallo <pierfrancesco.gallo.work@gmail.com> */
 
-
 #include <iostream>
-#include "lcm_GCD.hh"
+#include "../lcm_GCD.hh"
 
 bool check_number(std::string str) 
 {
@@ -34,12 +33,12 @@ bool check_number(std::string str)
 }
 
 
+
 int main(int argc, char *argv[]) 
 {
-    Prime_factorization gcd;
+    Prime_factorization lcm;
     std::vector <int> number;
-
-  bool show_calculation = false;
+    bool show_calculation = false;
     if(argc <= 2) 
     {
 
@@ -61,13 +60,11 @@ int main(int argc, char *argv[])
     }
 
     for (int i = 1; i < argc; i++) {
-
         if(check_number(argv[i]) == true)
         {
             int x = atoi(argv[i]);
             number.push_back(x);
         }
-
         else 
         {
             std::string arg = argv[i];
@@ -98,7 +95,7 @@ int main(int argc, char *argv[])
             }
         }
     }
-    std::cout << gcd.GCD(number,show_calculation) << std::endl;
+    std::cout << lcm.LCM(number,show_calculation) << std::endl;
 
     return 0;
     
